@@ -13,7 +13,7 @@ class AnimatedLoadingBar extends StatefulWidget {
   /// The [colors] parameter must not be null and should contain at least two colors.
   /// The [height] parameter specifies the height of the loading bar.
   /// The [duration] parameter specifies the duration of the color animation.
-  
+
   const AnimatedLoadingBar({
     Key? key,
     this.height = 10.0,
@@ -39,19 +39,15 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
     )..repeat(reverse: true);
 
     _animation = TweenSequence<Color?>(
-      widget.colors
-          .asMap()
-          .entries
-          .map((entry) {
-            int idx = entry.key;
-            Color color = entry.value;
-            Color nextColor = widget.colors[(idx + 1) % widget.colors.length];
-            return TweenSequenceItem(
-              tween: ColorTween(begin: color, end: nextColor),
-              weight: 1,
-            );
-          })
-          .toList(),
+      widget.colors.asMap().entries.map((entry) {
+        int idx = entry.key;
+        Color color = entry.value;
+        Color nextColor = widget.colors[(idx + 1) % widget.colors.length];
+        return TweenSequenceItem(
+          tween: ColorTween(begin: color, end: nextColor),
+          weight: 1,
+        );
+      }).toList(),
     ).animate(_controller);
   }
 
