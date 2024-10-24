@@ -2,6 +2,9 @@
 
 A customizable horizontal loading bar with animated color transitions for Flutter applications.
 
+![Demo](assets/demo.gif)
+
+
 ## Features
 
 - **Dynamic Colors**: Easily define a list of colors for the progress bar to transition through.
