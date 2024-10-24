@@ -25,4 +25,4 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  animated_loading_bar: ^0.0.2
+  animated_loading_bar: ^0.0.3
