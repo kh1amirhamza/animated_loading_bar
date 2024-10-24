@@ -1,0 +1,14 @@
+name: animated_loading_bar
+description: A customizable horizontal loading bar with animated color transitions.
+version: 0.0.1
+homepage: https://github.com/kh1amirhamza/animated_loading_bar
+
+environment:
+  sdk: ^3.5.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
