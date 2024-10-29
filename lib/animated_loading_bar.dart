@@ -32,7 +32,6 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
   late AnimationController _controller;
   late Animation<Color?> _animation;
 
-  late AnimationController _controllerGradient;
   late Animation<double> _animationGradient;
 
   @override
@@ -56,10 +55,7 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
       }).toList(),
     ).animate(_controller);
 
-    // _controllerGradient = AnimationController(
-    //   vsync: this,
-    //   duration: widget.duration,
-    // )..repeat(reverse: true);
+
 
     _animationGradient =
         Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
