@@ -7,51 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // @override
-  // Widget build(BuildContext context) {
-  //   final colors = [
-  //     Colors.red,
-  //     Colors.green,
-  //     Colors.blue,
-  //     Colors.red, // Duplicate the first color to ensure seamless transition
-  //   ];
-  //
-  //   final stops = [
-  //     for (var i = 0; i < colors.length; i++) i / (colors.length - 1)
-  //   ];
-  //
-  //   final gradient = SweepGradient(
-  //     startAngle: 0.0,
-  //     endAngle: 2 * 3.14,
-  //     colors: colors,
-  //     stops: stops,
-  //     tileMode: TileMode.clamp,
-  //   );
-  //
-  //   return MaterialApp(
-  //     home: Scaffold(
-  //       appBar: AppBar(title: const Text('Smooth SweepGradient Example')),
-  //       body: const Center(
-  //           child: GradientCircularProgressIndicator(
-  //         radius: 100.0,
-  //         strokeWidth: 10.0,
-  //         value: 1.0, // Progress value (0.0 to 1.0)
-  //         gradient: SweepGradient(
-  //           colors: [
-  //             Colors.red,
-  //             Colors.green,
-  //             Colors.blue,
-  //            Colors.red
-  //           ], // Duplicate first color for seamless transition
-  //           stops: [0.0, 0.33,
-  //             0.66,
-  //            1.0
-  //           ],
-  //         ),
-  //       )),
-  //     ),
-  //   );
-  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
