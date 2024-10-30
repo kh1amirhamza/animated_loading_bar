@@ -30,9 +30,11 @@ class AnimatedLoadingBar extends StatefulWidget {
 class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
     with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _rotationController;
   late Animation<Color?> _animation;
 
   late Animation<double> _animationGradient;
+  late Animation<double> _rotationAnimation;
 
   @override
   void initState() {
@@ -41,7 +43,12 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
       vsync: this,
       duration: widget.duration,
     );
-     // ..repeat(reverse: false);
+    _rotationController = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+    )
+    ;
+    // ..repeat(reverse: false);
 
     _animation = TweenSequence<Color?>(
       widget.colors.asMap().entries.map((entry) {
@@ -53,18 +60,29 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
           weight: 1,
         );
       }).toList(),
-    ).animate(_controller);
+    ).animate(_controller)..addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        // Start rotation animation after progress is complete
+        _rotationController.repeat();
+      }
+    });;
 
 
+  //  _rotationAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_rotationController);
 
     _animationGradient =
         Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
-    _controller.forward();
+    _controller.forward().whenComplete((){
+     // _rotationController.forward();
+    });
+
+
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _rotationController.dispose();
     super.dispose();
   }
 
@@ -78,15 +96,16 @@ class _AnimatedLoadingBarState extends State<AnimatedLoadingBar>
           for (var i = 0; i < widget.colors.length; i++) i / (widget.colors.length - 1)
         ];
         return widget.loadingType == LoadingType.circular
-            ? GradientCircularProgressIndicator(
-                radius: 100.0,
-                strokeWidth: 10.0,
-                value: _animationGradient.value, // Progress value (0.0 to 1.0)
-                gradient: SweepGradient(
-                  colors: widget.colors, // Duplicate first color for seamless transition
-                  stops: stops,
-                  //stops: [0.0, 0.33, 0.55, 0.66, 1.0],
-                ))
+            ? RotationTransition(turns: _rotationController,
+        child: GradientCircularProgressIndicator(
+            radius: 30.0,
+            strokeWidth: 8.0,
+            value: _animationGradient.value, // Progress value (0.0 to 1.0)
+            gradient: SweepGradient(
+              colors: widget.colors, // Duplicate first color for seamless transition
+              stops: stops,
+              //stops: [0.0, 0.33, 0.55, 0.66, 1.0],
+            )),)
             : LinearProgressIndicator(
                 backgroundColor: Colors.grey[200],
                 color: _animation.value,

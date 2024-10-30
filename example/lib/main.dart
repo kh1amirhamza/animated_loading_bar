@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
           child: AnimatedLoadingBar(
             // colors: [Colors.red, Colors.blue, Colors.green, Colors.purple,],
             colors: [
-                          Colors.red,
-                          Colors.green,
-                          Colors.yellow,
-                          Colors.blue,
-                         Colors.red
+              Colors.red,
+              Colors.green,
+              Colors.yellow,
+              Colors.blue,
+              Colors.red
             ],
             height: 10.0,
             duration: Duration(seconds: 2),
@@ -42,6 +42,7 @@ class GradientCircularProgressIndicator extends StatelessWidget {
   final SweepGradient gradient;
 
   const GradientCircularProgressIndicator({
+    super.key,
     required this.radius,
     required this.strokeWidth,
     required this.value,
